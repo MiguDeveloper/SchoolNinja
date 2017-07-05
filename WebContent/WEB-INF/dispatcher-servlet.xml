@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<context:component-scan base-package="pe.tuna.*"></context:component-scan>
+
+	<mvc:annotation-driven />
+
+	<!-- Resolutor de vistas -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView"></property>
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	<!-- Ya que usamos spring Data ahora tenenemos que definir el origen de 
+		datos -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/db_school"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
+	</bean>
+
+	<!-- Ahora definimos el jpaVendorAdapter e indicamos que va a ser de hibernate -->
+	<bean id="jpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="showSql" value="true"></property>
+		<property name="generateDdl" value="true"></property>
+		<property name="database" value="MYSQL"></property>
+	</bean>
+
+	<!-- Ahora configuramos el entityManager(componente ligero) para conocer 
+		todo los entidades -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>
+		<!-- spring based scanning for entity classes paquete donde ubicaremos 
+			nuestras clase modelo -->
+		<property name="packagesToScan" value="pe.tuna.entity"></property>
+	</bean>
+
+	<!-- habilitamos el manejo de transacciones por anotaciones -->
+	<tx:annotation-driven />
+
+	<!-- Ahora definimos el marco transaccional -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
+	</bean>
+
+	<!-- Paquete base de donde tenemos ubicado nuestros repositorios -->
+	<jpa:repositories base-package="pe.tuna.repository"></jpa:repositories>
+
+	<!-- Para la carga de los recursos estaticos Css, Js -->
+	<mvc:resources mapping="/resources/**" location="/resources/theme-gentella/" />
+
+	<!-- bean para el uso de properties en mensajes -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/msgValidaciones"></property>
+	</bean>
+
+</beans>
