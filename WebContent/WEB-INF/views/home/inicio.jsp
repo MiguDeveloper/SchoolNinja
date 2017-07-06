@@ -18,6 +18,11 @@
 <body>
 	<div class="container">
 		<h1>${mensaje}</h1>
+		<ul class="list-group">
+			<li class="list-group-item">Item 1</li>
+			<li class="list-group-item">Item 2</li>
+			<li class="list-group-item">Item 3</li>
+		</ul>
 	</div>
 </body>
 </html>
