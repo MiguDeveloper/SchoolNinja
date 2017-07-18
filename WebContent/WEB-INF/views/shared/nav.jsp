@@ -17,40 +17,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a><i class="fa fa-edit"></i> Datos poblacion <span class="fa fa-chevron-down"></span></a>
+                        <a><i class="fa fa-edit"></i> Datos Colegio <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li>
-                                <a href="<c:url value='/tipoDoc/activos' />" data-toggle="tooltip" data-placement="right" 
-                                   title="Tipo: DNI, etc.">Tipo doc. Identidad</a>
-                            </li>
-                            <li>
-                                <a href="<c:url value='/tipodocventa/activos' />" data-toggle="tooltip" data-placement="right" 
-                                   title="Tipo: boleta, recibo">Tipo doc. venta</a>
-                            </li>
-                            <li>
-                                <a href="<c:url value='/cove/activos' />" data-toggle="tooltip" data-placement="right" 
-                                   title="Lista de COVES registrados">COVES</a>
-                            </li>
-                            <li>
-                                <a href="<c:url value='/tipopoblador/activos' />" data-toggle="tooltip" data-placement="right" 
-                                   title="Tipo: Usuario, Socio">Tipo de poblador</a>
-                            </li>
-                            <li>
-                                <a href="<c:url value='/socio/activos' />" data-toggle="tooltip" data-placement="right" 
-                                   title="Lista de pobladores registrados en AUSAPAH">Pobladores</a>
-                            </li>
-                            <li>
-                                <a href="<c:url value='/mesagua/activos' />" data-toggle="tooltip" data-placement="right" 
-                                   title="Lista de meses de pago registrados">Costo mensual agua</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a><i class="fa fa-credit-card"></i> Cobranza <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li>
-                                <a href="<c:url value='/docpago/nuevo'/>" data-toggle="tooltip" data-placement="right" 
-                                   title="Registro de boleta, recibo por consumo mensual agua">Registrar pago</a>
+                                <a href="<c:url value='/profesor/activos' />" data-toggle="tooltip" data-placement="right" 
+                                   title="Profesores: agregar, listar, eliminar">Profesores</a>
                             </li>
                             
                         </ul>

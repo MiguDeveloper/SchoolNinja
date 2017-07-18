@@ -114,4 +114,10 @@ public class Profesor {
 		this.flg_estado = flg_estado;
 	}
 
+	@Override
+	public String toString() {
+		return "Profesor [id=" + id + ", nombres=" + nombres + ", ape_paterno=" + ape_paterno + ", ape_materno="
+				+ ape_materno + ", dni=" + dni + ", nro_telefono=" + nro_telefono + ", flg_estado=" + flg_estado + "]";
+	}
+
 }

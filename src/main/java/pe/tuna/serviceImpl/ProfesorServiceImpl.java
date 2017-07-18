@@ -26,4 +26,12 @@ public class ProfesorServiceImpl implements ProfesorService {
 		return profesorRepository.getAndFindProfesores(apePaterno);
 	}
 
+	@Override
+	public int addProfesor(Profesor profesor) {
+		logger.info("Agregando nuevo profesor");
+		int flgOperacion = profesorRepository.addProfesor(profesor.getNombres(), profesor.getApe_paterno(),
+				profesor.getApe_materno(), profesor.getDni(), profesor.getNro_telefono());
+		return flgOperacion;
+	}
+
 }

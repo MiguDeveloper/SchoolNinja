@@ -10,8 +10,11 @@ import pe.tuna.entity.Profesor;
 
 @Repository("profesorRepository")
 public interface ProfesorRepository extends JpaRepository<Profesor, Integer> {
-	
+
 	@Query(value = "call getAndFindProfesores(?)", nativeQuery = true)
 	List<Profesor> getAndFindProfesores(String apePaterno);
-	
+
+	@Query(value = "call addProfesor(?,?,?,?,?)", nativeQuery = true)
+	int addProfesor(String nombres, String apePaterno, String apeMaterno, String dni, String telefono);
+
 }
