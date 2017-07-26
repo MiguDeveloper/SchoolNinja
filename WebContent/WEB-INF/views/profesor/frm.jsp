@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +27,7 @@
 								<div class="clearfix"></div>
 							</div>
 							<div class="x_content">
-								<form:form method="post" modelAttribute="profesorForm">
+								<form:form method="post" action="${op}" modelAttribute="profesorForm">
 									
 									<div class="alert alert-danger" role="alert">
 			                            <c:out value="${existe}"/>
@@ -89,7 +89,7 @@
 				},
 				messages:{
 					nombres: {required:'Ingrese el nombre del profe'}
-				},
+				}/*,
 				submitHandler: function(form){
 					var profesor = $("#profesorForm").serialize();
 					$.ajax({
@@ -99,21 +99,15 @@
 						data: profesor,
 						success: function(response){
 							console.log(response);
-							console.log(response.status);
-							for(var i=0; i<response.errorMessageList.length; i++){
-								if(response.errorMessageList[i].fielName == "ape_paterno"){
-									$("#ape_paterno-errors").html("");
-									$("#ape_paterno-errors").append(response.errorMessageList[i].message + " ");
-									$("#ape_paterno-errors").show();
-								};
-							}
+							console.log(response.validacion);
+							
 							
 						},
 						error: function(xhr, ajaxOptions, throwsError){
 							return false;
 						}
 					})
-				}
+				}*/
 			})
 		});
 	</script>
