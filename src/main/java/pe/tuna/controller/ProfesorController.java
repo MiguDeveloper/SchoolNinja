@@ -61,7 +61,7 @@ public class ProfesorController {
 
 	@PostMapping("/postCove")
 	public String submitProfesor(@Valid @ModelAttribute("profesorForm") Profesor profesor, BindingResult result,
-			HttpServletResponse response) throws IOException {
+			Model model, HttpServletResponse response) throws IOException {
 
 		String validacion;
 
@@ -71,16 +71,18 @@ public class ProfesorController {
 
 			validacion = "noOk";
 			view = "profesor/frm";
-			return "profesor/frm";
+
 		} else {
 			validacion = "ok";
 			int flgOperacion = profesorService.addProfesor(profesor);
 			if (flgOperacion == 1) {
 				mensaje = "Se agrego con éxito el Profesor";
 				estadoOperacion = "1";
-				view = "profesor/activos";
+				model.addAttribute("add_exito", mensaje);
+				view = "redirect:/profesor/activos";
 			} else {
-				mensaje = "el DNI: " + profesor.getDni() + ", ya existe";
+				mensaje = "El número de DNI: " + profesor.getDni() + " ya existe, verifique por favor";
+				model.addAttribute("existe", mensaje);
 				estadoOperacion = "-1";
 				view = "profesor/frm";
 			}
@@ -101,8 +103,9 @@ public class ProfesorController {
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(jsonData);
 
-			return "profesor/activos";
 		}
+
+		return view;
 
 	}
 

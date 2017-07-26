@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +23,12 @@
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="x_panel">
+							<c:if test="${add_exito != null}">
+								<div class="alert alert-danger" role="alert">
+									${add_exito} jbjwbdjw
+					             </div>
+							</c:if>
+									
 							<div class="x_title">
 								<h2>Lista de Profesores</h2>
 

@@ -29,9 +29,11 @@
 							<div class="x_content">
 								<form:form method="post" action="${op}" modelAttribute="profesorForm">
 									
-									<div class="alert alert-danger" role="alert">
-			                            <c:out value="${existe}"/>
-			                        </div>
+									<c:if test="${existe != null}">
+										<div class="alert alert-danger" role="alert">
+											${existe}
+					                    </div>
+									</c:if>
                         
 									<form:errors path="*" element="div" cssClass="alert alert-danger" />
 	
@@ -39,13 +41,13 @@
 									
 									<form:label path="nombres">Nombres</form:label>
 									<form:input path="nombres" cssClass="form-control" />
-									<label id="nombres-errors" class="text-danger"></label>
+									<form:errors path="nombres" cssClass="text-danger"></form:errors>
 									
 									<br>
 
 									<form:label path="ape_paterno">Apellido Paterno</form:label>
 									<form:input path="ape_paterno" cssClass="form-control" />
-									<label id="ape_paterno-errors" class="text-danger"></label>
+									<form:errors path="ape_paterno" cssClass="text-danger"></form:errors>
 									<br>
 									
 									<form:label path="ape_materno">Apellido Materno</form:label>
@@ -84,30 +86,24 @@
 		$(document).ready(function(){
 			console.log("Estamos cargando jquery");
 			$("#profesorForm").validate({
+				
 				rules:{
-					nombres: {required: true}
+					nombres: {required: true},
+					ape_paterno: {required: true},
+					ape_materno: {required: true},
+					dni: {required: true, number: true, maxlength: 8, minlength: 8}
 				},
 				messages:{
-					nombres: {required:'Ingrese el nombre del profe'}
-				}/*,
-				submitHandler: function(form){
-					var profesor = $("#profesorForm").serialize();
-					$.ajax({
-						url: "${op}",
-						type: "POST",
-						dataType: "json",
-						data: profesor,
-						success: function(response){
-							console.log(response);
-							console.log(response.validacion);
-							
-							
-						},
-						error: function(xhr, ajaxOptions, throwsError){
-							return false;
-						}
-					})
-				}*/
+					nombres: {required:'Ingrese el nombre del profe'},
+					ape_paterno: {required: 'Ingrese el apellido paterno'},
+					ape_materno: {required: 'Ingrese el apellido materno'},
+					dni: {
+						required: 'ingrese el número de DNI',
+						number: 'Ingrese números',
+						minlength: 'DNI debe tener 8 digitos',
+						maxlength: 'DNI máximo 8 digitos'
+					}
+				}
 			})
 		});
 	</script>
