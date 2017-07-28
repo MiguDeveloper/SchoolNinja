@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 
@@ -61,7 +62,7 @@ public class ProfesorController {
 
 	@PostMapping("/postCove")
 	public String submitProfesor(@Valid @ModelAttribute("profesorForm") Profesor profesor, BindingResult result,
-			Model model, HttpServletResponse response) throws IOException {
+			Model model, HttpServletResponse response, RedirectAttributes redir) throws IOException {
 
 		String validacion;
 
@@ -78,7 +79,7 @@ public class ProfesorController {
 			if (flgOperacion == 1) {
 				mensaje = "Se agrego con éxito el Profesor";
 				estadoOperacion = "1";
-				model.addAttribute("add_exito", mensaje);
+				redir.addFlashAttribute("add_exito", mensaje);
 				view = "redirect:/profesor/activos";
 			} else {
 				mensaje = "El número de DNI: " + profesor.getDni() + " ya existe, verifique por favor";
