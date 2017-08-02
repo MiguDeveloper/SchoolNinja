@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -55,26 +56,22 @@ public class ProfesorController {
 
 	@GetMapping("/nuevo")
 	public String showForm(Model model) {
-		model.addAttribute("op", "postCove");
+		model.addAttribute("op", "postProfesor");
 		model.addAttribute("profesorForm", new Profesor());
 		return "profesor/frm";
 	}
 
-	@PostMapping("/postCove")
+	@PostMapping("/postProfesor")
 	public String submitProfesor(@Valid @ModelAttribute("profesorForm") Profesor profesor, BindingResult result,
 			Model model, HttpServletResponse response, RedirectAttributes redir) throws IOException {
-
-		String validacion;
 
 		if (result.hasErrors()) {
 			logger.info("objeto arrival: " + profesor);
 			mensaje = "Error completar datos, verifique el formulario";
 
-			validacion = "noOk";
 			view = "profesor/frm";
 
 		} else {
-			validacion = "ok";
 			int flgOperacion = profesorService.addProfesor(profesor);
 			if (flgOperacion == 1) {
 				mensaje = "Se agrego con éxito el Profesor";
@@ -92,7 +89,6 @@ public class ProfesorController {
 			Map<String, String> respuesta = new LinkedHashMap<String, String>();
 
 			respuesta.put("tipoProceso", tipoProceso);
-			respuesta.put("validacion", validacion);
 			respuesta.put("mensaje", mensaje);
 			respuesta.put("estadoOperacion", estadoOperacion);
 			respuesta.put("view", view);
@@ -108,6 +104,37 @@ public class ProfesorController {
 
 		return view;
 
+	}
+
+	@GetMapping("edit/{id}")
+	public String showFormEdit(@PathVariable("id") int id, Model model) {
+		model.addAttribute("profesorForm", profesorService.getByIdProfesor(id));
+		return "profesor/frm";
+	}
+
+	@PostMapping("edit")
+	public String submitEditProfesor(@Valid @ModelAttribute("profesorForm") Profesor profesor, BindingResult result,
+			Model model, RedirectAttributes redir) {
+
+		String view;
+
+		if (result.hasErrors()) {
+			mensaje = "Existe un error, verifique el formulario";
+			model.addAttribute("mensaje", mensaje);
+			view = "profesor/frm";
+		} else {
+			int flgOperacion = profesorService.updateProfesor(profesor);
+			if (flgOperacion > 0) {
+				mensaje = "Se actualizo con éxito el profesor: " + profesor.getNombres() + " "
+						+ profesor.getApe_paterno();
+				redir.addFlashAttribute("add_exito", mensaje);
+				view = "redirect:/profesor/activos";
+			} else {
+				mensaje = "El dni: " + profesor.getDni() + " ya esta registrado";
+				view = "profesor/frm";
+			}
+		}
+		return view;
 	}
 
 	/*

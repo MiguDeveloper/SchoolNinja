@@ -34,4 +34,18 @@ public class ProfesorServiceImpl implements ProfesorService {
 		return flgOperacion;
 	}
 
+	@Override
+	public Profesor getByIdProfesor(int id) {
+		logger.info("obteniendo profesor por id: " + id);
+		Profesor profesor = profesorRepository.getByIdProfesor(id);
+		return profesor;
+	}
+
+	@Override
+	public int updateProfesor(Profesor profesor) {
+		int flgOperacion = profesorRepository.updateProfesor(profesor.getId(), profesor.getNombres(), profesor.getApe_paterno(),
+				profesor.getApe_materno(), profesor.getDni(), profesor.getNro_telefono());
+		return flgOperacion;
+	}
+
 }
