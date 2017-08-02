@@ -23,4 +23,7 @@ public interface ProfesorRepository extends JpaRepository<Profesor, Integer> {
 	@Query(value = "call updateProfesor(?,?,?,?,?,?)", nativeQuery = true)
 	int updateProfesor(int id, String nombres, String ape_paterno, String ape_materno, String dni, String nro_telefono);
 
+	@Query(value = "call deleteProfesor(?)", nativeQuery = true)
+	int deleteProfesor(int id);
+
 }

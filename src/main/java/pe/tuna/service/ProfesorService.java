@@ -9,4 +9,5 @@ public interface ProfesorService {
 	public int addProfesor(Profesor profesor);
 	public Profesor getByIdProfesor(int id);
 	public int updateProfesor(Profesor profesor);
+	public int deleteProfesor(int id);
 }

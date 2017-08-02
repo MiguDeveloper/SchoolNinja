@@ -117,7 +117,6 @@ public class ProfesorController {
 	public String submitEditProfesor(@Valid @ModelAttribute("profesorForm") Profesor profesor, BindingResult result,
 			Model model, RedirectAttributes redir) {
 
-		String view;
 
 		if (result.hasErrors()) {
 			mensaje = "Existe un error, verifique el formulario";
@@ -132,10 +131,18 @@ public class ProfesorController {
 				view = "redirect:/profesor/activos";
 			} else {
 				mensaje = "El dni: " + profesor.getDni() + " ya esta registrado";
+				model.addAttribute("op", "edit");
+				model.addAttribute("mensaje", mensaje);
 				view = "profesor/frm";
 			}
 		}
 		return view;
+	}
+	
+	@GetMapping("delete/{id}")
+	public String deleteProfesor(@PathVariable("id") int id, Model model){
+		int flgOperacion = profesorService.deleteProfesor(id);
+		return "redirect:/profesor/activos";
 	}
 
 	/*

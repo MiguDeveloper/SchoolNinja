@@ -48,4 +48,10 @@ public class ProfesorServiceImpl implements ProfesorService {
 		return flgOperacion;
 	}
 
+	@Override
+	public int deleteProfesor(int id) {
+		int flgOperacion = profesorRepository.deleteProfesor(id);
+		return flgOperacion;
+	}
+
 }
