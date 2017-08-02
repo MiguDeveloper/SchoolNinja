@@ -109,6 +109,7 @@ public class ProfesorController {
 	@GetMapping("edit/{id}")
 	public String showFormEdit(@PathVariable("id") int id, Model model) {
 		model.addAttribute("profesorForm", profesorService.getByIdProfesor(id));
+		model.addAttribute("op", "../edit");
 		return "profesor/frm";
 	}
 
