@@ -35,12 +35,7 @@ import pe.tuna.service.ProfesorService;
 public class ProfesorController {
 	private static Logger logger = Logger.getLogger(ProfesorController.class);
 
-	private Gson gson = null;
-	private PrintWriter out = null;
-
 	private String mensaje;
-	private String estadoOperacion;
-	private String tipoProceso;
 	private String view;
 
 	@Autowired
@@ -75,31 +70,13 @@ public class ProfesorController {
 			int flgOperacion = profesorService.addProfesor(profesor);
 			if (flgOperacion == 1) {
 				mensaje = "Se agrego con éxito el Profesor";
-				estadoOperacion = "1";
 				redir.addFlashAttribute("add_exito", mensaje);
 				view = "redirect:/profesor/activos";
 			} else {
 				mensaje = "El número de DNI: " + profesor.getDni() + " ya existe, verifique por favor";
 				model.addAttribute("existe", mensaje);
-				estadoOperacion = "-1";
 				view = "profesor/frm";
 			}
-
-			tipoProceso = "insertar";
-			Map<String, String> respuesta = new LinkedHashMap<String, String>();
-
-			respuesta.put("tipoProceso", tipoProceso);
-			respuesta.put("mensaje", mensaje);
-			respuesta.put("estadoOperacion", estadoOperacion);
-			respuesta.put("view", view);
-
-			String jsonData = null;
-			jsonData = new Gson().toJson(respuesta);
-
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			response.getWriter().write(jsonData);
-
 		}
 
 		return view;
@@ -141,7 +118,7 @@ public class ProfesorController {
 	
 	@GetMapping("delete/{id}")
 	public String deleteProfesor(@PathVariable("id") int id, Model model){
-		int flgOperacion = profesorService.deleteProfesor(id);
+		profesorService.deleteProfesor(id);
 		return "redirect:/profesor/activos";
 	}
 

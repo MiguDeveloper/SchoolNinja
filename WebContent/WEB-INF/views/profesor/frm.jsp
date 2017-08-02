@@ -34,6 +34,12 @@
 											${existe}
 					                    </div>
 									</c:if>
+									
+									<c:if test="${mensaje != null}">
+										<div class="alert alert-danger" role="alert">
+											${mensaje}
+					                    </div>
+									</c:if>
                         
 									<form:errors path="*" element="div" cssClass="alert alert-danger" />
 	
