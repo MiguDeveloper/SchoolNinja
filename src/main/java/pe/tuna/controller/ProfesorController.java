@@ -1,9 +1,6 @@
 package pe.tuna.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -20,8 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.google.gson.Gson;
 
 import pe.tuna.entity.Profesor;
 import pe.tuna.service.ProfesorService;
@@ -98,6 +93,7 @@ public class ProfesorController {
 		if (result.hasErrors()) {
 			mensaje = "Existe un error, verifique el formulario";
 			model.addAttribute("mensaje", mensaje);
+			model.addAttribute("op", "edit");
 			view = "profesor/frm";
 		} else {
 			int flgOperacion = profesorService.updateProfesor(profesor);
