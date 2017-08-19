@@ -22,6 +22,12 @@
                             <li>
                                 <a href="<c:url value='/profesor/activos' />" data-toggle="tooltip" data-placement="right" 
                                    title="Profesores: agregar, listar, eliminar">Profesores</a>
+                               	<a href="<c:url value='/grado/activos' />" data-toggle="tooltip" data-placement="right" 
+                                   title="Grados: agregar, listar, eliminar">Grados</a>
+                                <a href="<c:url value='/tipoDocumento/activos' />" data-toggle="tooltip" data-placement="right" 
+                                   title="Tipo documento: agregar, listar, eliminar">Tipo documentos</a>
+                                <a href="<c:url value='/alumno/activos' />" data-toggle="tooltip" data-placement="right" 
+                                   title="Alumno: agregar, listar, eliminar">Alumnos</a>
                             </li>
                             
                         </ul>

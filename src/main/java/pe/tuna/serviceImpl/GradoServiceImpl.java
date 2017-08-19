@@ -26,7 +26,7 @@ public class GradoServiceImpl implements GradoService {
 	// nombre(método like de la consulta SQL)
 	@Override
 	public List<Grado> getAndFindGrados(String descripcion) {
-		logger.info("listando grados, parametro descripción es: " + descripcion);
+		logger.info("listando grados, parametro descripción es: '" + descripcion + "'");
 		return gradoRepository.getAndFindGrados(descripcion);
 	}
 
@@ -47,9 +47,9 @@ public class GradoServiceImpl implements GradoService {
 
 	// Método para actualizar los datos de un grado
 	@Override
-	public int updateGrado(String nombre) {
+	public int updateGrado(int id, String nombre) {
 		logger.info("Actualizamos grado, parametro nombre es: " + nombre);
-		return gradoRepository.updateGrado(nombre);
+		return gradoRepository.updateGrado(id,nombre);
 	}
 
 	// Método para poner en estado desactivado pero no eliminado

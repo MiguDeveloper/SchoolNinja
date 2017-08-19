@@ -20,15 +20,15 @@ public interface GradoRepository extends JpaRepository<Grado, Integer> {
 	int addGrado(String nombre);
 
 	// Obtener por id
-	@Query(value = "call getById(?)", nativeQuery = true)
+	@Query(value = "call getByIdGrado(?)", nativeQuery = true)
 	Grado getById(int id);
 
 	// Actualizar
-	@Query(value = "call updateGrado(?)", nativeQuery = true)
-	int updateGrado(String nombre);
+	@Query(value = "call updateGrado(?,?)", nativeQuery = true)
+	int updateGrado(int id, String nombre);
 
 	// Eliminar
-	@Query(value = "deleteGrado(?)", nativeQuery = true)
+	@Query(value = "call deleteGrado(?)", nativeQuery = true)
 	int deleteGrado(int id);
 
 }

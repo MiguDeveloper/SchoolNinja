@@ -36,7 +36,7 @@
 	<bean id="jpaVendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 		<property name="showSql" value="true"></property>
-		<property name="generateDdl" value="true"></property>
+		<property name="generateDdl" value="false"></property>
 		<property name="database" value="MYSQL"></property>
 	</bean>
 

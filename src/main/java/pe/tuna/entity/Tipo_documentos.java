@@ -11,27 +11,28 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "GRADOS")
-public class Grado {
+@Table(name = "TIPO_DOCUMENTOS")
+public class Tipo_documentos {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="ID")
+	@Column(name = "ID")
 	private int id;
 
 	@NotEmpty
-	@Size(min = 2, max = 44)
-	@Column(name = "NOMBRE")
-	private String nombre;
+	@Size(min = 2, max = 99)
+	@Column(name = "DESCRIPCION")
+	private String descripcion;
 
 	@Column(name = "FLG_ESTADO")
 	private String flg_estado;
 
-	public Grado() {
+	public Tipo_documentos() {
 	}
 
-	public Grado(int id, String nombre, String flg_estado) {
+	public Tipo_documentos(int id, String descripcion, String flg_estado) {
 		this.id = id;
-		this.nombre = nombre;
+		this.descripcion = descripcion;
 		this.flg_estado = flg_estado;
 	}
 
@@ -43,12 +44,12 @@ public class Grado {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String getFlg_estado() {

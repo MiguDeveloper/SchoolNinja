@@ -5,15 +5,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Lista de profesores</title>
-	
-	<%@include file="../shared/css-cabecera.jsp"%>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Listado de grados</title>
+
+    <%@include file="../shared/css-cabecera.jsp"%>
+
 </head>
 <body class="nav-md">
-	<div class="container body">
+    
+    <div class="container body">
 		<div class="main_container">
 			<%@include file="../shared/nav.jsp"%>
 
@@ -40,35 +42,28 @@
 							</div>
 							
 							<div class="x_content">
-								<div class="btn-group" role="group" aria-label="...">
+                                
+                                <div class="btn-group" role="group" aria-label="...">
 									<a href="./nuevo" type="button" class="btn btn-success"> <span
 										class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-										Nuevo profesor
+										Nuevo grado
 									</a>
 								</div>
 
 								<table class="table table-hover table-striped">
 									<thead>
 										<th>Nombre</th>
-										<th>Ape. Paterno</th>
-										<th>Ape. Materno</th>
-										<th>Nro. Teléfono</th>
-										<th>DNI</th>
 										<th>Acciones</th>
 									</thead>
 									<tbody>
-										<c:forEach items="${lstProfesores}" var="profesor">
+										<c:forEach items="${lstGrados}" var="grado">
 											<tr>
-												<td><c:out value="${profesor.nombres}" /></td>
-												<td><c:out value="${profesor.ape_paterno}" /></td>
-												<td><c:out value="${profesor.ape_materno}" /></td>
-												<td><c:out value="${profesor.dni}"></c:out></td>
-												<td><c:out value="${profesor.nro_telefono }" /></td>
-												<td><a href="./edit/${profesor.id}" title="Editar">
+												<td><c:out value="${grado.nombre}" /></td>
+												<td><a href="./edit/${grado.id}" title="Editar">
 														<span class="glyphicon glyphicon-pencil"
 														aria-hidden="true"></span>
 												</a> <a href="#"
-													data-href="<c:url value='delete/${profesor.id}'/>"
+													data-href="<c:url value='delete/${grado.id}'/>"
 													data-toggle="modal" data-target="#confirm-delete"
 													title="eliminar"> <span
 														class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -106,16 +101,20 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Cancelar</button>
-							<a class="btn btn-danger btn-ok" title="Profesor">Eliminar</a>
+							<a class="btn btn-danger btn-ok" title="Grado">Eliminar</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- / Ventana Modal de eliminar -->
 
-		</div>
-	</div>
+        </div>
+        <!-- end main_container -->
+
+    </div>
+    <!-- end container -->
 
 	<%@include file="../shared/js-pie.jsp"%>
+    
 </body>
 </html>

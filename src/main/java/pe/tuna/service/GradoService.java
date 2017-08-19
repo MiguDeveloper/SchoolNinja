@@ -16,7 +16,7 @@ public interface GradoService {
 	public Grado getById(int id);
 
 	// Actualizar
-	public int updateGrado(String nombre);
+	public int updateGrado(int id, String nombre);
 
 	// Eliminar
 	public int deleteGrado(int id);
